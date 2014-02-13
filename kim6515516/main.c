@@ -1,11 +1,6 @@
-#include <stdio.h>
-#include <string.h>
-#include "saveToResult.h"
+#include "getFileSystemsInfo.h"
 
-
-int main(void)
+void main(void)
 {
-
-	return saveToResult();
-
+    getFileSystemsInfo();
 }
