@@ -3,7 +3,7 @@
 
 dfPrintFormatSave *getFileSystemsInfo(void)
 {
-    dfPrintFormatSave *dpfs = (dfPrintFormatSave*) malloc(sizeof(dfPrintFormatSave));
+    dfPrintFormatSave *dpfs = (dfPrintFormatSave*)malloc(sizeof(dfPrintFormatSave));
     // save execution result list of "df -B 1"  
     char stringBuffer[BUFF_SIZE] = {}; // temp buffer for fgets()
     char *pStrtok = NULL;  // pointer of strtok() 
