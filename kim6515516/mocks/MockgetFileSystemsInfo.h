@@ -13,7 +13,5 @@ void MockgetFileSystemsInfo_Verify(void);
 
 #define getFileSystemsInfo_ExpectAndReturn(cmock_retval) getFileSystemsInfo_CMockExpectAndReturn(__LINE__, cmock_retval)
 void getFileSystemsInfo_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, diskSpaceStatParce* cmock_to_return);
-#define getFilePointFromPopen_ExpectAndReturn(pCmd, cmock_retval) getFilePointFromPopen_CMockExpectAndReturn(__LINE__, pCmd, cmock_retval)
-void getFilePointFromPopen_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, char* pCmd, FILE* cmock_to_return);
 
 #endif

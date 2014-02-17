@@ -13,18 +13,9 @@ typedef struct _CMOCK_getFileSystemsInfo_CALL_INSTANCE
 
 } CMOCK_getFileSystemsInfo_CALL_INSTANCE;
 
-typedef struct _CMOCK_getFilePointFromPopen_CALL_INSTANCE
-{
-  UNITY_LINE_TYPE LineNumber;
-  FILE* ReturnVal;
-  char* Expected_pCmd;
-
-} CMOCK_getFilePointFromPopen_CALL_INSTANCE;
-
 static struct MockgetFileSystemsInfoInstance
 {
   CMOCK_MEM_INDEX_TYPE getFileSystemsInfo_CallInstance;
-  CMOCK_MEM_INDEX_TYPE getFilePointFromPopen_CallInstance;
 } Mock;
 
 extern jmp_buf AbortFrame;
@@ -33,7 +24,6 @@ void MockgetFileSystemsInfo_Verify(void)
 {
   UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
   UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.getFileSystemsInfo_CallInstance, cmock_line, "Function 'getFileSystemsInfo' called less times than expected.");
-  UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.getFilePointFromPopen_CallInstance, cmock_line, "Function 'getFilePointFromPopen' called less times than expected.");
 }
 
 void MockgetFileSystemsInfo_Init(void)
@@ -64,35 +54,6 @@ void getFileSystemsInfo_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, diskSpa
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
   Mock.getFileSystemsInfo_CallInstance = CMock_Guts_MemChain(Mock.getFileSystemsInfo_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
-  cmock_call_instance->ReturnVal = cmock_to_return;
-}
-
-FILE* getFilePointFromPopen(char* pCmd)
-{
-  UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
-  CMOCK_getFilePointFromPopen_CALL_INSTANCE* cmock_call_instance = (CMOCK_getFilePointFromPopen_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.getFilePointFromPopen_CallInstance);
-  Mock.getFilePointFromPopen_CallInstance = CMock_Guts_MemNext(Mock.getFilePointFromPopen_CallInstance);
-  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "Function 'getFilePointFromPopen' called more times than expected.");
-  cmock_line = cmock_call_instance->LineNumber;
-  {
-    UNITY_TEST_ASSERT_EQUAL_STRING(cmock_call_instance->Expected_pCmd, pCmd, cmock_line, "Function 'getFilePointFromPopen' called with unexpected value for argument 'pCmd'.");
-  }
-  return cmock_call_instance->ReturnVal;
-}
-
-void CMockExpectParameters_getFilePointFromPopen(CMOCK_getFilePointFromPopen_CALL_INSTANCE* cmock_call_instance, char* pCmd)
-{
-  cmock_call_instance->Expected_pCmd = pCmd;
-}
-
-void getFilePointFromPopen_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, char* pCmd, FILE* cmock_to_return)
-{
-  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_getFilePointFromPopen_CALL_INSTANCE));
-  CMOCK_getFilePointFromPopen_CALL_INSTANCE* cmock_call_instance = (CMOCK_getFilePointFromPopen_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
-  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
-  Mock.getFilePointFromPopen_CallInstance = CMock_Guts_MemChain(Mock.getFilePointFromPopen_CallInstance, cmock_guts_index);
-  cmock_call_instance->LineNumber = cmock_line;
-  CMockExpectParameters_getFilePointFromPopen(cmock_call_instance, pCmd);
   cmock_call_instance->ReturnVal = cmock_to_return;
 }
 
